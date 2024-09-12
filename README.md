@@ -1,7 +1,7 @@
 ---
-title: VertiGIS Studio - Contaienrs - Installation
+title: VertiGIS Studio - Containers - Installation
 ---
-# VertiGIS Studio - Contaienrs - Installation
+# VertiGIS Studio - Containers - Installation
 
 ### Get the Package
 ```bash
