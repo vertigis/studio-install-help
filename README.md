@@ -29,7 +29,7 @@ title: VertiGIS Studio - Containers - Installation
 > cd deploy-studio
 > iwr -Uri https://vertigis.github.io/studio-install-help/deploy-studio.zip -OutFile deploy-studio.zip
 > exa -Path deploy-studio.zip -DestinationPath .
-> del deploy-studio.tgz
+> del deploy-studio.zip
 ```
 
 ```git
