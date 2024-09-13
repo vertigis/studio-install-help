@@ -3,77 +3,108 @@ title: VertiGIS Studio - Containers - Installation
 ---
 # VertiGIS Studio - Containers - Installation
 
-### Get the Package
+## Get the Package
+
+| Links |                                                                                       |
+|-------|---------------------------------------------------------------------------------------|
+| TGZ   | [deploy-studio.tgz](https://vertigis.github.io/studio-install-help/deploy-studio.tgz) |
+| ZIP   | [deploy-studio.zip](https://vertigis.github.io/studio-install-help/deploy-studio.zip) |
+
 ```bash
-# For bash:
-# TODO: Host name is placeholder
-> curl -fsSL https://get-studio.vertigisstudio.com | tar -xz
-```
-```powershell
-# For powershell:
-# TODO: Host name is placeholder
-> iwr -Uri https://get-studio.vertigisstudio.com -OutFile vgs.tgz; tar -xzf vgs.tgz; del vgs.tgz
+> mkdir -p deploy-studio
+> cd deploy-studio
+> curl -fsSL https://vertigis.github.io/studio-install-help/deploy-studio.tgz | tar -xz
 ```
 
-### On Linux
+```cmd
+> mkdir deploy-studio
+> cd deploy-studio
+> curl -fsSL https://vertigis.github.io/studio-install-help/deploy-studio.tgz -o deploy-studio.tgz
+> tar -xzf deploy-studio.tgz
+> del deploy-studio.tgz
+```
+
+```powershell
+> mkdir deploy-studio
+> cd deploy-studio
+> iwr -Uri https://vertigis.github.io/studio-install-help/deploy-studio.zip -OutFile deploy-studio.zip
+> exa -Path deploy-studio.zip -DestinationPath .
+> del deploy-studio.tgz
+```
+
+```git
+> git clone https://github.com/vertigis/studio-install-help deploy-studio
+> cd deploy-studio
+```
+
+## On Linux: Initial Setup
 ```bash
 # Install Docker and supporting tools
-# Skip if already done.
-# This may ask you for sudo access
-> ./install-tools.sh
+> sudo ./install-tools.sh
 
 # Edit configuration for VertiGIS Studio
-# Skip if already done.
-> ./configure-studio.sh
+# If using a plain terminal, try one of these:
+> nano docker-compose.yaml
+> vim docker-compose.yaml
+# If using a GUI, try one of these:
+> code docker-compose.yaml &
+> gedit docker-compose.yaml &
+> kate docker-compose.yaml &
+> mousepad docker-compose.yaml &
 
-# Gain access to images
-# Skip if already done or login has expired.
-# TODO: Host/repo name is placeholder
-# If using user/token, login with this command:
-> docker login images.vertigisstudio.com
-# If using ACR, login with this command instead:
-> az acr login -n repo
+# Gain access to Docker images
+# If using user/token, login with docker:
+> docker login vertigisapps.azurecr.com
+# If using ACR, login with Azure CLI:
+> az acr login -n vertigisapps
 
-# Pull down VertiGIS Studio image(s)
-# If intending to upgrade, do this step.
-# Pulling new images will not interfere with running containers.
-> docker compose pull
-
-# Get VertiGIS Studio running
-# Newly pulled images will be running after this command.
+# Pull/Start VertiGIS Studio
 > docker compose up --wait
 ```
 
-### On Windows: Install Remotely over SSH
+## On Linux: Upgrade to latest
+```bash
+# If login has expired, gain access to images
+# If using user/token, login with docker:
+> docker login vertigisapps.azurecr.com
+# If using ACR, login with Azure CLI:
+> az acr login -n vertigisapps
+
+# Pull down VertiGIS Studio
+> docker compose pull
+
+# Upgrade/Restart VertiGIS Studio
+> docker compose up --wait
+```
+
+## On Windows: Initial Setup
 ```powershell
-# Install required tools: Powershell extensions and SSH
-# Skip if already done.
-# Local Admin required
+# ADMIN: Install required tools
 > .\install-tools.ps1
 
-# Optional: Request Web certificates from Enrollment Services
-# Review section on how to request web certs from Enrollment Services.
-# Local Admin required
+# ADMIN: Request Web certificates using Enrollment Services
+# This step can be skipped if testing or if no web certificate is needed.
+# Refer to the section on using Enrollment Services.
 > .\request-web-certs.ps1
 
-# Optional: Extract CA certificates from Active Directory
-# Allows for enterprise systems to use HTTPS properly.
+# Extract CA certificates from Active Directory
+# Some environments may use an internal CA system.
+# This will enable systems to communicate over HTTPS in this situation.
 > .\extract-ca-certs.ps1
 
 # Edit configuration for VertiGIS Studio
-> .\configure-studio.ps1
+> code docker-compose.yaml
+> notepad docker-compose.yaml
 
 # Create SSH key
-# Do this once per user per machine.
 > ssh-keygen -t ed25519
 
-# Copy SSH identity to remote Linux host
-# This will enable passwordless authentication.
-# Do this once per user per machine per remote.
+# Enable passwordless SSH
 > .\rsat-auth.ps1 user@linux.contoso.com
+```
 
-# Remote into Linux host
-# Transfer context to deploy-studio folder.
-# Continue with the installation using steps from "On Linux".
+## On Windows: Login via SSH
+```powershell
+# Transfer context to remote deploy-studio folder.
 > .\rsat-transfer.ps1 user@linux.contoso.com deploy-studio
 ```

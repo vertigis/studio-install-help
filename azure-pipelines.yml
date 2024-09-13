@@ -1,0 +1,17 @@
+pool:
+  vmImage: ubuntu-latest
+
+trigger:
+  - master
+
+steps:
+  - bash: |
+      set -e
+      cd install-help
+      sudo apt -y pandoc
+      pandoc README.md -o README.pdf
+      mkdir -p artifacts
+      zip -r artifacts/$BUILD_BUILDID.zip . -x artifacts "*.md" "*.zip"
+
+  - publish: install-help/artifacts
+    artifact: help
