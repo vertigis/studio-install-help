@@ -26,7 +26,7 @@ Silent = TRUE
 CertificateTemplate = WebServerV3
 
 ; Specify Subject Alternative Names (SANs)
-; Change this for your server
+; Change this for your needs
 [Extensions]
 2.5.29.17 = "{text}"
 _continue_ = "dns=server1.contoso.com&"

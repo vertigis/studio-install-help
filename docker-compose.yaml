@@ -11,10 +11,12 @@ services:
       VERTIGIS_PURGE: 1
       VERTIGIS_WORKERS: 8
       TZ: America/Los_Angeles
+      WEB_CERT: host
     volumes:
       - "data:/data"
       - "logs:/var/log"
       - "stmp:/stmp"
+      - "./server:/etc/nginx/server"
       - "./ca-certs:/usr/local/share/ca-certificates"
       - "./web-certs:/usr/local/share/web-certificates"
 volumes:
