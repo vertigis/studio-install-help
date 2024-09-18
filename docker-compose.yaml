@@ -1,5 +1,6 @@
+name: studio
 services:
-  studio:
+  main:
     image: vertigisapps.azurecr.io/studio
     ports:
       - 80:8080

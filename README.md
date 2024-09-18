@@ -1,6 +1,13 @@
 ---
 title: VertiGIS Studio - Containers - Installation
 ---
+
+## Guidance
+Before you begin, there are a few prerequesites you'll need. In order to run VertiGIS Studio
+in a container, you'll need to have a suitable distribution of Linux (see below) with the
+system requirements as outlined. You will also need credentials to access the VertiGIS production
+image registry.
+
 ## System Requirements
 
 | Requirement  | Spec                                                                           |
@@ -8,7 +15,11 @@ title: VertiGIS Studio - Containers - Installation
 | OS           | Linux                                                                          |
 | Distribution | Ubuntu 24.04, Ubuntu 22.04, or Debian 12 (bookworm)                            |
 | Memory       | 4 GB Minimum, 8 GB Preferred                                                   |
-| Disk         | 16 GB Free                                                                     |
+| Disk         | 16 GB Free           
+
+## Releases
+
+$body$
 
 ## Get the Package
 
@@ -40,7 +51,7 @@ title: VertiGIS Studio - Containers - Installation
 ```
 
 ```git
-> git clone https://github.com/vertigis/studio-install-help deploy-studio
+> git clone --depth 1 --branch gh-pages https://github.com/vertigis/studio-install-help deploy-studio
 > cd deploy-studio
 ```
 
@@ -80,8 +91,11 @@ title: VertiGIS Studio - Containers - Installation
 # Pull down VertiGIS Studio
 > docker compose pull
 
-# Upgrade/Restart VertiGIS Studio
+# Upgrade VertiGIS Studio
 > docker compose up --wait
+
+# Refresh configuration 
+> docker exec studio-main-1 util-refresh
 ```
 
 ## On Windows: Initial Setup
@@ -164,4 +178,7 @@ _continue_ = "dns=server2.contoso.com"
 ## Using Studio as a Reverse Proxy
 For convenience, the Studio image provides a means of using the internal
 NGINX server as a reverse proxy. You can take advantage of this for
-whatever needs you have. Simply edit the `server/nginx.conf` file.
+whatever needs you have:
+
+- Modify `server/nginx.conf` file
+- Update your deployment (see [here](#on-linux-upgrade-to-latest))

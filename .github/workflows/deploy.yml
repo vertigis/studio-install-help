@@ -3,6 +3,7 @@ name: Deploy
 on:
   push:
     branches:
+      - artifact
       - master
   workflow_dispatch: {}  
 
@@ -15,12 +16,16 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: master
+
     - name: Build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        sudo apt -y install pandoc
+        sudo apt -y install jq pandoc
         pandoc -v
+        git worktree add artifact artifact
         bash ./build.sh
         ls -l dist
         ls -l zip
