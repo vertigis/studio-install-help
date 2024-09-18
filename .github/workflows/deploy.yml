@@ -19,13 +19,17 @@ jobs:
       with:
         ref: master
 
+    - uses: actions/checkout@v4
+      with:
+        ref: artifact
+        path: artifact
+
     - name: Build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sudo apt -y install jq pandoc
         pandoc -v
-        git worktree add artifact origin/artifact
         bash ./build.sh
         ls -l dist
         ls -l zip
