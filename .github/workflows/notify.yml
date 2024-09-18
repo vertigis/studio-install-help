@@ -1,0 +1,8 @@
+name: Artifact
+on:
+  push: {}
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit

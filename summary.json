@@ -1,0 +1,26 @@
+[
+    {
+        "name": "studio/base:latest",
+        "date": "Tue Sep 17 2024 8:05:25 PM PDT"
+    },
+    {
+        "name": "studio/base:rc-1.1.441.190516",
+        "date": "Tue Sep 17 2024 8:05:25 PM PDT"
+    },
+    {
+        "name": "studio/base:rc-1.1.440.190438",
+        "date": "Tue Sep 17 2024 2:01:15 PM PDT"
+    },
+    {
+        "name": "studio/base:rc-1.1.439.189865",
+        "date": "Sun Sep 15 2024 8:04:54 PM PDT"
+    },
+    {
+        "name": "studio/base:rc-1.1.434.188932",
+        "date": "Tue Sep 10 2024 8:05:14 PM PDT"
+    },
+    {
+        "name": "studio/base:rc-1.1.432.188486",
+        "date": "Mon Sep 9 2024 8:50:23 AM PDT"
+    }
+]
