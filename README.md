@@ -2,11 +2,34 @@
 title: VertiGIS Studio - Containers - Installation
 ---
 
-## Guidance
-Before you begin, there are a few prerequesites you'll need. In order to run VertiGIS Studio
-in a container, you'll need to have a suitable distribution of Linux (see below) with the
-system requirements as outlined. You will also need credentials to access the VertiGIS production
-image registry.
+## Preparation
+In order to run VertiGIS Studio in containers, there are a few prerequesites
+that should be satisfied. Before you begin, please have the following at hand:
+
+### Account ID and Registry Credentials
+We require an appropriate license to run our software, but also, you will need
+registry credentials to pull down the software. Our support can help you with
+finding the following information:
+
+- VertiGIS Account ID
+- VertiGIS Docker Registry Login Credentials
+
+### Linux Machine
+We require Linux to run VertiGIS Studio in containers. You will need to have
+a suitable distribution/version of Linux installed on an appropriately
+resourced machine. Please review the system requirements.
+
+### Front-End URL
+As with all web software, you will need to know the front-end URL of
+where you plan to host the software. Various components need to know
+this value.
+
+### ArcGIS Portal and Application Registration
+Go to your portal and create a web application:
+
+- Register this application (enable OAUTH2)
+- Provide a Redirect URL (use the Front-End URL)
+- Note the App ID
 
 ## System Requirements
 
@@ -20,6 +43,11 @@ image registry.
 ## Releases
 
 $body$
+
+```script
+# Find the latest tags
+> az acr repository show-tags -n vertigisapps --repository studio/base --top 10 --orderby time_desc [-u user]
+```
 
 ## Get the Package
 
@@ -71,10 +99,7 @@ $body$
 > mousepad docker-compose.yaml &
 
 # Gain access to images
-# If using user/token, login with docker:
-> docker login vertigisapps.azurecr.io
-# If using ACR, login with Azure CLI:
-> az acr login -n vertigisapps
+> az acr login -n vertigisapps [-u user]
 
 # Pull/Start VertiGIS Studio
 > docker compose up --wait
@@ -83,10 +108,7 @@ $body$
 ## On Linux: Upgrade to Latest
 ```bash
 # If login has expired, gain access to images
-# If using user/token, login with docker:
-> docker login vertigisapps.azurecr.io
-# If using ACR, login with Azure CLI:
-> az acr login -n vertigisapps
+> az acr login -n vertigisapps [-u user]
 
 # Pull down VertiGIS Studio
 > docker compose pull

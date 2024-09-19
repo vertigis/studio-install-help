@@ -104,6 +104,10 @@ pre.bash::before {
   content: "BASH";
 }
 
+pre.script::before {
+  content: "SCRIPT";
+}
+
 pre.powershell::before {
   content: "POWERSHELL";
 }
