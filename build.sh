@@ -13,6 +13,7 @@ pandoc temp/summary.csv -o temp/README.md   --from csv      --to gfm  --template
 pandoc temp/README.md   -o dist/README.html --from markdown --to html --template static/README.html --toc --metadata=date="$DATE"
 pandoc temp/README.md   -o dist/README.md   --from markdown --to gfm  --template static/README.md   --toc --metadata=date="$DATE"
 pushd dist > /dev/null
+chmod +x *.sh
 tar -czf ../temp/deploy-studio.tgz .
 zip -qr ../temp/deploy-studio.zip .
 popd > /dev/null
