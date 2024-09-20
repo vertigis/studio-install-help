@@ -2,8 +2,26 @@
 title: VertiGIS Studio - Containers - Installation
 ---
 
+## System Requirements
+
+| Requirement  | Spec                                                                           |
+|--------------|--------------------------------------------------------------------------------|
+| OS           | Linux                                                                          |
+| Distribution | Ubuntu 24.04, Ubuntu 22.04, or Debian 12 (bookworm)                            |
+| Memory       | 4 GB Minimum, 8 GB Preferred                                                   |
+| Disk         | 16 GB Free           
+
+## Releases
+
+$body$
+
+```script
+# Find the latest tags
+> az acr repository show-tags -n vertigisapps --repository studio/base --top 10 --orderby time_desc [-u user]
+```
+
 ## Preparation
-In order to run VertiGIS Studio in containers, there are a few prerequesites
+In order to run VertiGIS Studio in containers, there are a few prerequisites
 that should be satisfied. Before you begin, please have the following at hand:
 
 ### Account ID and Registry Credentials
@@ -30,24 +48,6 @@ Go to your portal and create a web application:
 - Register this application (enable OAUTH2)
 - Provide a Redirect URL (use the Front-End URL)
 - Note the App ID
-
-## System Requirements
-
-| Requirement  | Spec                                                                           |
-|--------------|--------------------------------------------------------------------------------|
-| OS           | Linux                                                                          |
-| Distribution | Ubuntu 24.04, Ubuntu 22.04, or Debian 12 (bookworm)                            |
-| Memory       | 4 GB Minimum, 8 GB Preferred                                                   |
-| Disk         | 16 GB Free           
-
-## Releases
-
-$body$
-
-```script
-# Find the latest tags
-> az acr repository show-tags -n vertigisapps --repository studio/base --top 10 --orderby time_desc [-u user]
-```
 
 ## Get the Package
 
@@ -160,7 +160,7 @@ Some Windows enterprise environments require using internal
 CA services for secure communication. If you plan on using
 Studio as a frontend, you'll want to give the container a
 real web certificate. Your IT professional can likely help
-with this, but you can likely do this yourself.
+with this. Although, you can likely perform this task independently.
 
 ### Provide a Web Certificate Directly
 - Edit the `docker-compose.yaml` file
