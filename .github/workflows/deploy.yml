@@ -1,9 +1,7 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - master
+  push: {}
   workflow_run: 
     workflows:
       - Artifact
@@ -20,9 +18,6 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
-      with:
-        ref: master
-
     - uses: actions/checkout@v4
       with:
         ref: artifact
@@ -41,4 +36,7 @@ jobs:
         git add dist -f
         git commit -m gh-pages-split
         git subtree split --prefix dist -b gh-pages-split
-        git push origin gh-pages-split:gh-pages -f
+
+        target=gh-pages
+        [ -n "$GITHUB_HEAD_REF" ] && target=gh-pages-preview
+        git push origin gh-pages-split:$target -f
