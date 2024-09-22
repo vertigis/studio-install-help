@@ -5,10 +5,8 @@ services:
     image: vertigisapps.azurecr.io/studio/base:latest
     ports:
       # Map port 80 to 8080 of the container
-      # Change if you already have a frontend
       - 80:8080
       # Map port 443 to 8443 of the container
-      # Change if you already have a frontend
       - 443:8443
     environment:
       # Create an application in ArcGIS Portal

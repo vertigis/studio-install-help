@@ -35,7 +35,9 @@ finding the following information:
 ### Linux Machine
 We require Linux to run VertiGIS Studio in containers. You will need to have
 a suitable distribution/version of Linux installed on an appropriately
-resourced machine. Please review the system requirements.
+resourced machine. Please review the system requirements. We suggest using
+said Linux machine as a pure Docker host. In other words, do not install
+software directly on the host system.
 
 ### Front-End URL
 As with all web software, you will need to know the front-end URL of
@@ -154,6 +156,21 @@ Go to your portal and create a web application:
 ### Continue Setup on Linux
 - [Initial Setup](#on-linux-initial-setup)
 - [Upgrade to Latest](#on-linux-upgrade-to-latest)
+
+## Port Management
+The Studio image will provide HTTP access (container port 8080) and HTTPS
+access (container port 8443). You may map these ports however you like on
+the host machine (see configuration). 
+
+### Bring you own Reverse Proxy
+If you wish to use your own reverse proxy, you will want to expose the
+container via non-standard ports. Afterwards, you will need to configure
+your reverse proxy to route to one of these ports. Remember to give the
+container a certificate if you plan to route to the HTTPS port.
+
+### Leverage the HTTPS Feature
+If you wish, you may want to leverage the direct HTTPS port directly and
+route the standard HTTPS port (443) to the container port (8443).
 
 ## Give the Container a Web Certificate
 Some Windows enterprise environments require using internal
