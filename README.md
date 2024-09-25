@@ -169,8 +169,9 @@ your reverse proxy to route to one of these ports. Remember to give the
 container a certificate if you plan to route to the HTTPS port.
 
 ### Leverage the HTTPS Feature
-If you wish, you may want to leverage the direct HTTPS port directly and
-route the standard HTTPS port (443) to the container port (8443).
+If you wish, you may leverage the HTTPS port directly and
+route the standard HTTPS port (443) to the container
+port (8443).
 
 ## Give the Container a Web Certificate
 Some Windows enterprise environments require using internal
